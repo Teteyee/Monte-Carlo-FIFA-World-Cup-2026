@@ -24,21 +24,36 @@ def Simular_Partido(Country_A, Country_B, CountryElo, simulaciones=10000):
     for i in range(simulaciones):
         todos_los_marcadores.append((goles_A_sim[i], goles_B_sim[i]))
     
-   #Extraccion de los mejores resultados
+    #Extraccion de los mejores resultados (Cambiado a 3)
     conteo = collections.Counter(todos_los_marcadores)
-    mejores_dos = conteo.most_common(2)
+    mejores_tres = conteo.most_common(5)
     
     #Datos del primer lugar (el mas probable)
-    marcador_1, veces_1 = mejores_dos[0]
+    marcador_1, veces_1 = mejores_tres[0]
     porcentaje_1 = (veces_1 / simulaciones) * 100
     
     #Datos del segundo lugar
-    marcador_2, veces_2 = mejores_dos[1]
+    marcador_2, veces_2 = mejores_tres[1]
     porcentaje_2 = (veces_2 / simulaciones) * 100
+    
+    #Datos del tercer lugar (Agregado)
+    marcador_3, veces_3 = mejores_tres[2]
+    porcentaje_3 = (veces_3 / simulaciones) * 100
+
+    #Datos del cuarto lugar 
+    marcador_4, veces_4 = mejores_tres[3]
+    porcentaje_4 = (veces_4 / simulaciones) * 100
+
+    #Datos del quinto lugar
+    marcador_5, veces_5 = mejores_tres[4]
+    porcentaje_5 = (veces_5 / simulaciones) * 100
     
     print(f"Prediccion {Country_A} vs {Country_B}: ")
     print(f"   1ra Opcion: {marcador_1[0]} - {marcador_1[1]} ({porcentaje_1:.2f}%)")
     print(f"   2da Opcion: {marcador_2[0]} - {marcador_2[1]} ({porcentaje_2:.2f}%)")
+    print(f"   3ra Opcion: {marcador_3[0]} - {marcador_3[1]} ({porcentaje_3:.2f}%)")
+    print(f"   4ta Opcion: {marcador_4[0]} - {marcador_4[1]} ({porcentaje_4:.2f}%)")
+    print(f"   5ta Opcion: {marcador_5[0]} - {marcador_5[1]} ({porcentaje_5:.2f}%)")
     print("-" * 50)
     
     if marcador_1[0] > marcador_1[1]:
@@ -58,7 +73,7 @@ CountryFIFA  = {
 'England':1825,
 'Portugal':1763,
 'Brazil':1762,
-'Netherlands':1757,
+'Netherlands':1751,
 'Morroco':1756,
 'Belgium':1739,
 'Germany':1739,
@@ -78,7 +93,7 @@ CountryFIFA  = {
 'South Korea':1589,
 'Australia':1578,
 'Egypt':1565,
-'Argelia':1564,
+'Argelia':1571,
 'Canada':1560,
 'Norway':1555,
 'Panama':1539,
@@ -101,6 +116,19 @@ CountryFIFA  = {
 'Haiti':1296,
 'Curacao':1293,
 'New Zealand':1276,
+
+#paises que no van al mundial
+'Denmark':1620,
+'Republica dominicana':1077,
+'El Salvador':1225,
+'Italy': 1500, #penalizados personalmente porque no se juegan nada
+'Luxemburgo': 1227, 
+'Poland': 1400, #-100 puntos por no jugarse nada
+'Nigeria': 1500, #restados 87 por no jugarse nada 
+
+
+
+
 }
 
 #Usuario mete los paises (deben coincidir los nombres de CountryFIFA)
@@ -112,11 +140,13 @@ CountryFIFA  = {
 #Country_List = ['Germany', 'Curacao', 'Ivory Coast', 'Ecuador'] # GroupE
 #Country_List = ['Netherlands', 'Japan', 'Sweden', 'Tunisia'] # GroupF
 #Country_List = ['Belgium', 'Egypt', 'Iran', 'New Zealand'] # GroupG
-Country_List = ['Spain', 'Cape Verde', 'Saudi Arabia', 'Uruguay'] # GroupH
+#Country_List = ['Spain', 'Cape Verde', 'Saudi Arabia', 'Uruguay'] # GroupH
 #Country_List = ['France', 'Senegal', 'Iraq', 'Norway'] # GroupI
 #Country_List = ['Argentina', 'Argelia', 'Austria', 'Jordan'] # GroupJ
 #Country_List = ['Portugal', 'DR Congo', 'Uzbekistan', 'Colombia'] # GroupK
 #Country_List = ['England', 'Croatia', 'Ghana', 'Panama'] # GroupL
+Country_List = [ 'South Korea', 'El Salvador'] # Enfrentamiento Directo
+
 
 
 NumSim = 10000 #numero de veces que se hara montecarlo
