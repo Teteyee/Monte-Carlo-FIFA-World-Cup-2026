@@ -101,7 +101,6 @@ CountryFIFA  = {
 'Haiti':1296,
 'Curacao':1293,
 'New Zealand':1276,
-
 }
 
 #Usuario mete los paises (deben coincidir los nombres de CountryFIFA)
@@ -119,10 +118,6 @@ Country_List = ['Spain', 'Cape Verde', 'Saudi Arabia', 'Uruguay'] # GroupH
 #Country_List = ['Portugal', 'DR Congo', 'Uzbekistan', 'Colombia'] # GroupK
 #Country_List = ['England', 'Croatia', 'Ghana', 'Panama'] # GroupL
 
-#Si es de otro mundial, actualiza todo de acuerdo al ranking fifa o alguna otra pagina basada en el elo y que tenga coherencia
-#para mostrar otro grupo, solo quita el "#" a lado de la palabra Country_List y vuelve a esconder el que estaba previamente "prendido"
-#para enfrentamientos directos, solo deja a los dos paises que quieres
-
 
 NumSim = 10000 #numero de veces que se hara montecarlo
 
@@ -132,18 +127,13 @@ for Country in Country_List :
     Country_Point_Zero[Country] = 0
 
 CountryAverage = Country_Point_Zero.copy()
-
 Match_All_List = list(it.combinations(Country_List, 2))
-
-
 Qualified_List = [] 
-
 
 print("======  LOS DOS MARCADORES MAS PROBABLES PREDICHOS ======")
 for Match_Competition in Match_All_List:
     Country_A = Match_Competition[0]
     Country_B = Match_Competition[1]
-    # Simulamos las 10,000 veces
     Simular_Partido(Country_A, Country_B, CountryFIFA, simulaciones=10000)
 print("=============================================================\n")
 
@@ -191,14 +181,6 @@ for i in range(0, NumSim):
         else:
             Qualified_List.append(Pass3)
         
-    if Score1 != Score2:
-        Leader_List.append(Pass1)
-    else:
-        if CountryFIFA[Pass1] >= CountryFIFA[Pass2]:
-            Leader_List.append(Pass1)
-        else:
-            Leader_List.append(Pass2)
-
     CountryAverage[Pass1] += Score1 / NumSim
     CountryAverage[Pass2] += Score2 / NumSim    
     CountryAverage[Pass3] += Score3 / NumSim
