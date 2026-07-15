@@ -24,7 +24,7 @@ def Simular_Partido(Country_A, Country_B, CountryElo, simulaciones=10000):
     for i in range(simulaciones):
         todos_los_marcadores.append((goles_A_sim[i], goles_B_sim[i]))
     
-    #Extraccion de los mejores resultados (Cambiado a 3)
+    #Extraccion de los mejores resultados (Cambiado a 5)
     conteo = collections.Counter(todos_los_marcadores)
     mejores_tres = conteo.most_common(5)
     
